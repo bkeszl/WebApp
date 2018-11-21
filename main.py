@@ -25,7 +25,8 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
-        self.response.out.write("hello")
+        params = {"user_name": "Hank"}
+        self.render_template("landing.html", params)
 
 
 app = webapp2.WSGIApplication([
