@@ -28,7 +28,12 @@ class MainHandler(BaseHandler):
         params = {"user_name": "Hank"}
         self.render_template("landing.html", params)
 
+class ResultHandler(BaseHandler):
+    def post(self):
+        params = {"input_text": self.request.get("some_text")}
+        self.render_template("result_template.html", params)
 
 app = webapp2.WSGIApplication([
-    webapp2.Route('/', MainHandler)
+    webapp2.Route('/', MainHandler),
+    webapp2.Route('/result', ResultHandler),
 ], debug=True)
