@@ -1,6 +1,8 @@
 import webapp2
 import jinja2
 import os
+from models import Message
+
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
@@ -31,6 +33,9 @@ class MainHandler(BaseHandler):
         self.render_template("landing.html", params)
 
     def post(self):
+        input_text = self.request.get("some_text")
+        msg = Message(message_text = input_text)
+        msg.put()
         params = {  "user_name": "Hank",
                     "input_text": self.request.get("some_text")
         }
