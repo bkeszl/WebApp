@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>GAE landing</title>
-</head>
-<body>
-    <h1>Hello, {{ user_name }}!</h1>
-    <form method="post" action="/result">
-        <input name="some_text">
-        <button type="submit">Publish</button>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Weabpp templated landing{% endblock title %}
+
+{% block main_container %}
+<h1>Hello, {{ user_name }}!</h1>
+<form method="post" action="/">
+    <input name="some_text">
+    <button type="submit">Publish</button>
+</form>
+{% if input_text %}
+<h2>
+ Your message: {{ input_text }}
+</h2>
+{% endif %}
+{% endblock main_container %}

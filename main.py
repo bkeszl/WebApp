@@ -25,15 +25,25 @@ class BaseHandler(webapp2.RequestHandler):
 
 class MainHandler(BaseHandler):
     def get(self):
-        params = {"user_name": "Hank"}
+        params = {"user_name": "Hank",
+                  "input_text": None,
+        }
         self.render_template("landing.html", params)
 
-class ResultHandler(BaseHandler):
     def post(self):
-        params = {"input_text": self.request.get("some_text")}
-        self.render_template("result_template.html", params)
+        params = {  "user_name": "Hank",
+                    "input_text": self.request.get("some_text")
+        }
+        self.render_template("landing.html", params)
+
+class ListHandler(BaseHandler):
+    def get(self):
+        message_list = ["adfiua", "dgfheuzrhgi", "egugwbvi", "132413254"]
+        params = {"message_list": message_list}
+        self.render_template("message_list.html", params)
+
 
 app = webapp2.WSGIApplication([
     webapp2.Route('/', MainHandler),
-    webapp2.Route('/result', ResultHandler),
+    webapp2.Route('/list', ListHandler),
 ], debug=True)
