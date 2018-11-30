@@ -4,9 +4,10 @@
 
 {% block main_container %}
 <h1>Hello, {{ user_name }}!</h1>
+<h3>Send me a message!:</h3>
 <form method="post" action="/">
     <input name="some_text">
-    <button type="submit">Publish</button>
+    <button type="submit">Send</button>
 </form>
 {% if input_text %}
 <h2>

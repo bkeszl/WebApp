@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}MessageDetails{% endblock title %}
+
+{% block main_container %}
+{% if message %}
+<ul>
+    <li>ID: {{ message.key.id() }}</li>
+
+    <li>Message: {{ message.message_text }}</li>
+
+    <li>Created: {{ message.created.strftime("%b %d %Y %H:%M:%S") }}</li>
+
+    <li>Modified: {{ message.modified.strftime("%b %d %Y %H:%M:%S") }}</li>
+</ul>
+<a href="/message/{{ message.key.id() }}/edit">Edit</a><br>
+<a href="/message/{{ message.key.id() }}/delete">Delete</a>
+{% else %}
+<h1> message not found </h1>
+{% endif %}
+{% endblock main_container %}
